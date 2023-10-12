@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://27trg8c1kghj"]
+
+[ext_resource type="Script" path="res://Projectile.gd" id="1_mxqae"]
+[ext_resource type="Texture2D" uid="uid://52kn4bh0hyi6" path="res://assets/cannon_ball.png" id="2_b2hel"]
+[ext_resource type="Texture2D" uid="uid://cegr0nbotc8b4" path="res://assets/explosion_start.png" id="3_nu4xv"]
+[ext_resource type="Texture2D" uid="uid://yhi66jqndblv" path="res://assets/explosion_middle.png" id="4_sirrh"]
+[ext_resource type="Texture2D" uid="uid://clt7c2nssr8wl" path="res://assets/explosion_end.png" id="5_gw8m6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cmdpx"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a4jhn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nu4xv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sirrh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gw8m6")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 14.0
+}]
+
+[node name="CannonBall" type="CharacterBody2D"]
+script = ExtResource("1_mxqae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_cmdpx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_b2hel")
+
+[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(0.783784, 0.726667)
+sprite_frames = SubResource("SpriteFrames_a4jhn")
+animation = &"explosion"
+frame = 2
+frame_progress = 1.0
+
+[node name="OffScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="animation_finished" from="ExplosionAnimation" to="." method="_on_explosion_animation_animation_finished"]
+[connection signal="screen_exited" from="OffScreenNotifier" to="." method="_on_off_screen_notifier_screen_exited"]
