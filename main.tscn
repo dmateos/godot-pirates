@@ -15979,7 +15979,7 @@ position = Vector2(343, 307)
 up_direction = Vector2(0.707107, 0.707107)
 script = ExtResource("2_twj5w")
 
-[node name="Boat" type="Sprite2D" parent="Player"]
+[node name="Ship" type="Sprite2D" parent="Player"]
 rotation = 4.71239
 scale = Vector2(0.833333, 0.683628)
 texture = ExtResource("3_pjo4g")
@@ -16013,7 +16013,7 @@ position = Vector2(-3.95056, 3.22388)
 up_direction = Vector2(0.707107, 0.707107)
 script = ExtResource("5_m6quk")
 
-[node name="Boat" type="Sprite2D" parent="EnemyPath/PathFollow2D/Enemy"]
+[node name="Ship" type="Sprite2D" parent="EnemyPath/PathFollow2D/Enemy"]
 rotation = 4.71239
 scale = Vector2(0.833333, 0.683628)
 texture = ExtResource("6_p1onv")
